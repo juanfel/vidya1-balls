@@ -33,35 +33,35 @@ public class FireShotBehavior : MonoBehaviour {
 		if (!launched) {
 						//Queremos que al disparar una pelota se cree una nueva dentro de un tiempo, y se elimine despues
 						//un tiempo mas grande
-						if (Input.GetButtonUp ("Fire1") == true && rigidbody2D.isKinematic) {
-								rigidbody2D.isKinematic = false;
-								angleQuat = Quaternion.AngleAxis (anglenum, Vector3.forward);
-								rigidbody2D.AddForce (angleQuat * forceVector * power, ForceMode2D.Impulse);
-				                launched = true;
-							shotX = transform.position.x;
-							shotY = transform.position.y;
-							Invoke ("createNewBall",1f);
-							Destroy(gameObject,10f);
-						}
-						if (Input.GetButton ("Fire1") == true && rigidbody2D.isKinematic) {
-							power = power + 0.1f;
-						}
-						float movement = Input.GetAxis ("Horizontal");
-						if (movement != 0) {
+			if (Input.GetButtonUp ("Fire1") == true && rigidbody2D.isKinematic) {
+				rigidbody2D.isKinematic = false;
+				angleQuat = Quaternion.AngleAxis (anglenum, Vector3.forward);
+				rigidbody2D.AddForce (angleQuat * forceVector * power, ForceMode2D.Impulse);
+				launched = true;
+				shotX = transform.position.x;
+				shotY = transform.position.y;
+				Invoke ("createNewBall",1f);
+				Destroy(gameObject,10f);
+			}
+			if (Input.GetButton ("Fire1") == true && rigidbody2D.isKinematic) {
+				power = power + 0.1f;
+			}
+			float movement = Input.GetAxis ("Horizontal");
+			if (movement != 0) {
 
-								Vector3 currentPos = transform.position;
-								currentPos.x = currentPos.x + (movement) * 0.1f;
-								if(currentPos.x >= 0)
-								{
-									currentPos.x = 0;
-								}
-								transform.position = currentPos;
+				Vector3 currentPos = transform.position;
+				currentPos.x = currentPos.x + (movement) * 0.1f;
+				if(currentPos.x >= 0)
+				{
+					currentPos.x = 0;
+				}
+				transform.position = currentPos;
 
-						}
-						float angleAxis = Input.GetAxis ("Vertical");
-						if (angleAxis != 0) {
-								anglenum += 0.1f*Mathf.Sign (angleAxis); 
-						}
+			}
+			float angleAxis = Input.GetAxis ("Vertical");
+			if (angleAxis != 0) {
+				anglenum += 0.1f*Mathf.Sign (angleAxis); 
+			}
 		}
 	}
 }
