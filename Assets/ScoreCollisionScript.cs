@@ -17,7 +17,7 @@ public class ScoreCollisionScript : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D coll)
 	{
 		Debug.Log ("Colision"+coll.gameObject.tag);
-		coll.gameObject.tag = "Finish";
-		Instantiate (ball, new Vector3 (x, y, 0), Quaternion.identity);
+		//coll.gameObject.tag = "Finish";
+		//Instantiate (ball, new Vector3 (x, y, 0), Quaternion.identity);
 	}
 }
