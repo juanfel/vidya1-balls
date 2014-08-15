@@ -4,8 +4,10 @@ using System.Collections;
 public class FireShotBehavior : MonoBehaviour {
 
 	// Use this for initialization
-	public float x;
+	public float x; //Guardan la posicion inicial donde aparece una pelota nueva
 	public float y;
+	public float shotX; //Guardan la posicion inicial del tiro
+	public float shotY;
 	public Transform ball;
 	public int bounceCount;
 	Vector2 forceVector = new Vector2(1,0);
@@ -13,6 +15,7 @@ public class FireShotBehavior : MonoBehaviour {
 	float anglenum = 0f;
 	bool launched = false;
 	float power = 0f;
+
 	void Start () {
 		forceVector = new Vector2(1,0);
 		launched = false;
@@ -35,6 +38,8 @@ public class FireShotBehavior : MonoBehaviour {
 								angleQuat = Quaternion.AngleAxis (anglenum, Vector3.forward);
 								rigidbody2D.AddForce (angleQuat * forceVector * power, ForceMode2D.Impulse);
 				                launched = true;
+							shotX = transform.position.x;
+							shotY = transform.position.y;
 							Invoke ("createNewBall",1f);
 							Destroy(gameObject,10f);
 						}
