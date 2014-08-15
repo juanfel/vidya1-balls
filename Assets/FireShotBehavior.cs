@@ -7,6 +7,7 @@ public class FireShotBehavior : MonoBehaviour {
 	public float x;
 	public float y;
 	public Transform ball;
+	public int bounceCount;
 	Vector2 forceVector = new Vector2(1,0);
 	Quaternion angleQuat;
 	float anglenum = 0f;
@@ -17,11 +18,11 @@ public class FireShotBehavior : MonoBehaviour {
 		launched = false;
 		power = 0f;
 		anglenum = 0f;
+		bounceCount = 0;
 		rigidbody2D.isKinematic = true;
 	}
 	void createNewBall()
 	{
-		this.tag = "Finish";
 		Instantiate (ball, new Vector3 (x, y, 0), Quaternion.identity);
 	}
 	// Update is called once per frame
