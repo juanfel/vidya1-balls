@@ -27,13 +27,15 @@ public class FireShotBehavior : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!launched) {
-						
+						//Queremos que al disparar una pelota se cree una nueva dentro de un tiempo, y se elimine despues
+						//un tiempo mas grande
 						if (Input.GetButtonUp ("Fire1") == true && rigidbody2D.isKinematic) {
 								rigidbody2D.isKinematic = false;
 								angleQuat = Quaternion.AngleAxis (anglenum, Vector3.forward);
 								rigidbody2D.AddForce (angleQuat * forceVector * power, ForceMode2D.Impulse);
 				                launched = true;
 							Invoke ("createNewBall",1f);
+							Destroy(gameObject,10f);
 						}
 						if (Input.GetButton ("Fire1") == true && rigidbody2D.isKinematic) {
 							power = power + 0.1f;
@@ -52,7 +54,7 @@ public class FireShotBehavior : MonoBehaviour {
 						}
 						float angleAxis = Input.GetAxis ("Vertical");
 						if (angleAxis != 0) {
-								anglenum += Mathf.Sign (angleAxis); 
+								anglenum += 0.1f*Mathf.Sign (angleAxis); 
 						}
 		}
 	}
