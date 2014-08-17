@@ -16,6 +16,7 @@ public class ScoreCollisionScript : MonoBehaviour {
 	}
 	void OnCollisionEnter2D(Collision2D coll)
 	{
+		coll.gameObject.GetComponent<FireShotBehavior> ().audio2.Play ();
 		Debug.Log ("Colision"+coll.gameObject.tag);
 		Debug.Log ("shotX: " + coll.gameObject.GetComponent<FireShotBehavior>().shotX);
 		//coll.gameObject.tag = "Finish";
