@@ -5,6 +5,7 @@ public class GameScript : MonoBehaviour {
 	
 	public int time = 500;
 	public int turn = 1;
+    int multiplier;
 	public GUIText timer_label;
 	public GUIText score1_label;
 	public GUIText score2_label;
@@ -22,8 +23,8 @@ public class GameScript : MonoBehaviour {
 		time--;
 	}
 
-	void Score(){
-		//.....
+	public void Score(float distanceMultiplier, float bounces){
+        score1_label.text = (100 * distanceMultiplier * (bounces+1)).ToString();
 	}
 	
 	// Update is called once per frame
@@ -32,7 +33,6 @@ public class GameScript : MonoBehaviour {
 						multiplier_label.text = 
 						(Mathf.Abs ((0 - ball.position.x)*0.25f)+1).ToString ();
 				}
-
 		timer_label.text = time.ToString();
 	}
 }

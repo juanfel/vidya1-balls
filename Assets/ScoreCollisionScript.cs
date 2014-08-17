@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class ScoreCollisionScript : MonoBehaviour {
+    public GameObject bounceCounter;
+    public GameScript gameScript;
 	public float y;
 	public float x;
 	public Transform ball;
@@ -16,7 +18,9 @@ public class ScoreCollisionScript : MonoBehaviour {
 	}
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-		coll.gameObject.GetComponent<FireShotBehavior> ().audio2.Play ();
+        FireShotBehavior currentBall = coll.gameObject.GetComponent<FireShotBehavior>();
+		currentBall.audio2.Play ();
+        gameScript.Score(currentBall.getMultiplier(),currentBall.bounceCount);
 		Debug.Log ("Colision"+coll.gameObject.tag);
 		Debug.Log ("shotX: " + coll.gameObject.GetComponent<FireShotBehavior>().shotX);
 		//coll.gameObject.tag = "Finish";

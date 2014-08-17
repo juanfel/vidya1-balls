@@ -48,6 +48,11 @@ public class FireShotBehavior : MonoBehaviour {
 		Instantiate (ball, new Vector3 (x, y, 0), Quaternion.identity);
 
 	}
+    public float getMultiplier()
+    {
+        return 0.25f * Mathf.Abs(0 - shotX) + 1;
+
+    }
 	// Update is called once per frame
 	void Update () {
 		if (!launched) {
@@ -88,10 +93,11 @@ public class FireShotBehavior : MonoBehaviour {
 		power_meter.eulerAngles = new Vector3 (0, 0, anglenum);
 		power_meter.localScale = new Vector3 (power*0.2f, 1, 1);
 
-		if (!launched) {
-						target.position = transform.position + new Vector3 (0, 0, 3);
-						power_meter.position = transform.position + new Vector3 (0, 0, 4);
-				}
+        if (!launched)
+        {
+            target.position = transform.position + new Vector3(0, 0, 3);
+            power_meter.position = transform.position + new Vector3(0, 0, 4);
+        }
 
 	}
 }
