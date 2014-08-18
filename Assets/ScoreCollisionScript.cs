@@ -20,7 +20,7 @@ public class ScoreCollisionScript : MonoBehaviour {
 	{
         FireShotBehavior currentBall = coll.gameObject.GetComponent<FireShotBehavior>();
 		currentBall.audio2.Play ();
-        gameScript.Score(currentBall.getMultiplier(),currentBall.bounceCount);
+        gameScript.Score(currentBall.getMultiplier(),currentBall.bounceCount,currentBall.getTurn ());
 		Debug.Log ("Colision"+coll.gameObject.tag);
 		Debug.Log ("shotX: " + coll.gameObject.GetComponent<FireShotBehavior>().shotX);
 		//coll.gameObject.tag = "Finish";

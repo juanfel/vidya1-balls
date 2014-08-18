@@ -20,6 +20,7 @@ public class FireShotBehavior : MonoBehaviour {
 	float anglenum = 0f;
 	public bool launched = false;
 	float power = 0f;
+	int turn;
 
 	void Start () {
 		forceVector = new Vector2(1,0);
@@ -39,20 +40,25 @@ public class FireShotBehavior : MonoBehaviour {
 		launched = true;
 		shotX = transform.position.x;
 		shotY = transform.position.y;
-		Invoke ("createNewBall",1f);
+		turn = GameCamera.GetComponent<GameScript> ().turn;
+		Invoke ("createNewBall",2f);
 		Destroy(gameObject,10f);
 	}
 	void createNewBall()
 	{
-
 		Instantiate (ball, new Vector3 (x, y, 0), Quaternion.identity);
-
+		GameCamera.GetComponent<GameScript> ().nextTurn ();
 	}
     public float getMultiplier()
     {
         return 0.25f * Mathf.Abs(0 - shotX) + 1;
 
     }
+
+	public int getTurn()
+	{
+		return turn;
+	}
 	// Update is called once per frame
 	void Update () {
 		if (!launched) {
