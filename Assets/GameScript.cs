@@ -21,6 +21,8 @@ public class GameScript : MonoBehaviour {
 	public Transform ball;
 	public Transform powerup;
 
+    public GUIText gameOverText;
+
 	int score1 = 0;
 	int score2 = 0;
 	int score3 = 0;
@@ -76,14 +78,18 @@ public class GameScript : MonoBehaviour {
 		}
 		// al final de la ronda 7, terminar el juego
 		if (round >= 7) {
-			endGame();
+			startGameOver();
 		}
 		if (turn % 2 == 1) {
 			spawnPowerUp();
 		}
 		turn++;
 	}
-
+    private void startGameOver()
+    {
+        gameOverText.text = "Game Over!";
+        Invoke("endGame", 2);
+    }
 	private void endGame(){
 		MenuScript.highscore = Mathf.Max(score1,score2,score3,MenuScript.highscore);
 		Application.LoadLevel ("Inicio");
