@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameScript : MonoBehaviour {
 	
-	public int time = 500;
+	public int time;
 	public int turn = 0;
     int multiplier;
 	public GUIText timer_label;
@@ -39,7 +39,11 @@ public class GameScript : MonoBehaviour {
 	}
 
 	void Timer(){
-		time--;
+		if (time > 0) {
+			time--;
+		} else {
+			endGame ();
+		}
 	}
 
 	public void Score(float distanceMultiplier, float bounces,int ball_turn){
@@ -81,8 +85,8 @@ public class GameScript : MonoBehaviour {
 	}
 
 	private void endGame(){
-
-		// ir a la pantalla de gameover, highscore...
+		MenuScript.highscore = Mathf.Max(score1,score2,score3,MenuScript.highscore);
+		Application.LoadLevel ("Inicio");
 	}
 	
 	// Update is called once per frame
