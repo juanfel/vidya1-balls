@@ -1,25 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ScoreCollisionScript : MonoBehaviour {
-    public GameObject bounceCounter;
+public class PowerUpCollisionScript : MonoBehaviour {
     public GameScript gameScript;
+	public float y;
 	public float x;
 	public Transform ball;
 	// Use this for initialization
 	void Start () {
-	
+		gameObject.tag = "powerup";
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
-	void OnCollisionEnter2D(Collision2D coll)
+
+	void OnTriggerEnter2D(Collider2D coll)
 	{
         FireShotBehavior currentBall = coll.gameObject.GetComponent<FireShotBehavior>();
-		currentBall.audio2.Play ();
-        gameScript.Score(currentBall.getMultiplier(),currentBall.bounceCount,currentBall.getTurn ());
+		currentBall.audio3.Play ();
+		gameScript.givePowerUp (coll.gameObject.GetComponent<FireShotBehavior> ().getTurn ());
+		Destroy(gameObject,0f);
+
 		Debug.Log ("Colision"+coll.gameObject.tag);
 		Debug.Log ("shotX: " + coll.gameObject.GetComponent<FireShotBehavior>().shotX);
 		//coll.gameObject.tag = "Finish";
